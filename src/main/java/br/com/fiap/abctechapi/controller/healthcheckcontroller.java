@@ -5,13 +5,20 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Properties;
+
 @RestController
 @RequestMapping("/")
 public class healthcheckcontroller {
 
-    @GetMapping()
-    public ResponseEntity <Object> Status(){
+    @GetMapping("version")
+    public ResponseEntity <String> Status() throws IOException {
 
-        return ResponseEntity.ok().build();
+        Properties properties = new Properties();
+        InputStream InputStream = getClass().getClassLoader().getResourceAsStream( "application.yml");
+        properties.load(InputStream);
+        return ResponseEntity.ok(properties.getProperty("build.name") + " - " + properties.getProperty("build.version"));
     }
 }
