@@ -1,0 +1,17 @@
+version: 0.2
+phases:
+  commands:
+    - echo "Pré build phase - exemplo baixar dependencia se necessário"
+
+    build:
+      commands:
+        - echo "Building"
+        - mvn clean compile package
+
+    post_build:
+      commands:
+        - echo "Movendo os arquivos que serão feitos o upload"
+        - mv target/*.war ./ROOT.war
+artifacts:
+  files:
+    - ROOT.war
