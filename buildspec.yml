@@ -3,9 +3,8 @@ phases:
   pre_build:
     commands:
     - echo "Pré build phase - exemplo baixar dependencia se necessário"
-
-    build:
-      commands:
+  build:
+    commands:
         - echo "Building"
         - mvn clean compile war:war
   post_build:
