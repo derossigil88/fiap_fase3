@@ -17,7 +17,4 @@ public class Assistance {
 
     @Column(name = "description", nullable = false, length = 300)
     private String description;
-
-    @Column(name = "location", nullable = false, length = 50)
-    private String locString;
 }
