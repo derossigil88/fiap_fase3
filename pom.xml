@@ -35,6 +35,11 @@
 		<artifactId>mysql-connector-java</artifactId>
 		</dependency>
 
+		<dependency>
+			<groupId>org.flywaydb</groupId>
+			<artifactId>flyway-mysql</artifactId>
+		</dependency>
+
 		<!-- Teste Unitários -->
 		<dependency>
 			<groupId>com.h2database</groupId>

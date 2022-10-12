@@ -11,4 +11,5 @@ spring:
     password: Fiap1234
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: none
+    show-sql: false
