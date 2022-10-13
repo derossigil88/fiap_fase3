@@ -1,4 +1,4 @@
-package br.com.fiap.abctechapi.controller;
+package br.com.fiap.abctechapi.application.dto.controller;
 
 import br.com.fiap.abctechapi.application.OrderApplication;
 import br.com.fiap.abctechapi.application.dto.OrderDto;

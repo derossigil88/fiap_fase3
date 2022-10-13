@@ -1,10 +1,10 @@
-CREATE TABLE `assistance` (
-                              `id` bigint NOT NULL AUTO_INCREMENT,
-                              `description` varchar(300) NOT NULL,
-                              `name` varchar(100) NOT NULL,
-                              PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
+create table assistance
+(
+    id          bigint auto_increment
+        primary key,
+    description varchar(300) not null,
+    name        varchar(100) not null
+);
 INSERT INTO assistance (name,description) VALUES ('Manutenção 1', 'Descrição 1');
 INSERT INTO assistance (name,description) VALUES ('Manutenção 2', 'Descrição 2');
 INSERT INTO assistance (name,description) VALUES ('Manutenção 3', 'Descrição 3');
