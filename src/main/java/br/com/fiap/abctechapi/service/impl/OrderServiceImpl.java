@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class OrderServiceImpl implements OrderService {
@@ -28,13 +29,19 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public void saveOrder(Order order, List<Long> arrayAssists) throws Exception {
-        ArrayList<Assistance> assistances = new ArrayList<>();
+        ArrayList<Assistance> assists = new ArrayList<>();
         arrayAssists.forEach( i -> {
-            Assistance assistance = assistanceRepository.findById(i).orElseThrow();
-            assistances.add(assistance);
-        });
+            Optional <Assistance> assistance = assistanceRepository.findById(i);
 
-        order.setAssists(assistances);
+            if (!assistance.isPresent()){
+                throw new NotFoundAssistanceException();
+
+            }
+            assists.add(assistance.get());
+                                    }
+                            );
+
+        order.setAssists(assists);
 
         if (!order.hasMinAssists()){
             throw new MinimumAssistRequiredException("Invalid Assists","Necessário no minímo uma assitência");
