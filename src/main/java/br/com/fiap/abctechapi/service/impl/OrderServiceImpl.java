@@ -10,9 +10,7 @@ import br.com.fiap.abctechapi.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class OrderServiceImpl implements OrderService {
@@ -31,14 +29,13 @@ public class OrderServiceImpl implements OrderService {
     public void saveOrder(Order order, List<Long> arrayAssists) throws Exception {
         ArrayList<Assistance> assists = new ArrayList<>();
         arrayAssists.forEach( i -> {
-            Optional <Assistance> assistance = assistanceRepository.findById(i);
+                    Optional<Assistance> assistance = assistanceRepository.findById(i);
+                    if(!assistance.isPresent()){
+//                throw new Not();
+                    }
+                    assists.add(assistance.get());
 
-            if (!assistance.isPresent()){
-                throw new NotFoundAssistanceException();
-
-            }
-            assists.add(assistance.get());
-                                    }
+                }
                             );
 
         order.setAssists(assists);
@@ -52,8 +49,12 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public Order getOrderById(Long orderId) {
+    public List<Order> ListOrderByOperator(Long operatorId) {
+        return null;
+    }
 
-        return orderRepository.findById(orderId).orElseThrow();
+    @Override
+    public Collection<Object> listOrderByOperator(Long operatorId) {
+        return Collections.singleton(orderRepository.getOrdersByOperatorId(operatorId));
     }
 }

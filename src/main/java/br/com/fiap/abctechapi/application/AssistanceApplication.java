@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface AssistanceApplication {
 
-    List<AssistDto> getAssistis();
+    List<AssistDto> getAssists();
 
 
 }
