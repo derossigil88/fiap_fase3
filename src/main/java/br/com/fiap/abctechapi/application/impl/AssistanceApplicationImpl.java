@@ -22,7 +22,7 @@ public class AssistanceApplicationImpl implements AssistanceApplication {
     @Override
     public List<AssistDto> getAssists() {
 
-        return null;
+        return this.service.getAssistanceList().stream().map(this::mapAssistToDto).collect(Collectors.toList());
     }
 
     private AssistDto mapAssistToDto(Assistance assist){

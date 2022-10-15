@@ -20,28 +20,27 @@ public class OrderServiceImpl implements OrderService {
 
     public OrderServiceImpl(
             @Autowired OrderRepository orderRepository,
-            @Autowired AssistanceRepository assistanceRepository){
+            @Autowired AssistanceRepository assistanceRepository) {
         this.orderRepository = orderRepository;
         this.assistanceRepository = assistanceRepository;
     }
 
     @Override
     public void saveOrder(Order order, List<Long> arrayAssists) throws Exception {
-        ArrayList<Assistance> assists = new ArrayList<>();
+        ArrayList<Assistance> assistances = new ArrayList<>();
         arrayAssists.forEach( i -> {
-                    Optional<Assistance> assistance = assistanceRepository.findById(i);
-                    if(!assistance.isPresent()){
+            Optional<Assistance> assistance = assistanceRepository.findById(i);
+            if(!assistance.isPresent()){
 //                throw new Not();
-                    }
-                    assists.add(assistance.get());
+            }
+            assistances.add(assistance.get());
 
-                }
-                            );
+        });
 
-        order.setAssists(assists);
+        order.setAssists(assistances);
 
-        if (!order.hasMinAssists()){
-            throw new MinimumAssistRequiredException("Invalid Assists","Necessário no minímo uma assitência");
+        if(!order.hasMinAssists()){
+            throw new MinimumAssistRequiredException("Invalid Assists", "Necessario no minimo 1 assistencia");
         }else if (order.exceedsMaxAssists()){
             throw new MaxAssistsException("Invalid Assists", "Número máximo de assistências é 15");
         }
@@ -49,12 +48,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public List<Order> ListOrderByOperator(Long operatorId) {
-        return null;
-    }
-
-    @Override
-    public Collection<Object> listOrderByOperator(Long operatorId) {
-        return Collections.singleton(orderRepository.getOrdersByOperatorId(operatorId));
+    public List<Order> listOrderByOperator(Long operatorId) {
+        return orderRepository.getOrdersByOperatorId(operatorId);
     }
 }
