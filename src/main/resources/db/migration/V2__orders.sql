@@ -1,6 +1,6 @@
 create table order_location
 (
-    id        bigint      not null
+    id        bigint      not null AUTO_INCREMENT
         primary key,
     date      datetime(6) null,
     latitude  double      null,
@@ -8,7 +8,7 @@ create table order_location
 );
 create table orders
 (
-    id                      bigint not null
+    id                      bigint not null AUTO_INCREMENT
         primary key,
     operator_id             bigint not null,
     end_order_location_id   bigint null,

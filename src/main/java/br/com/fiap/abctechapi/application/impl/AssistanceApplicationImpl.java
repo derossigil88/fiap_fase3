@@ -6,6 +6,7 @@ import br.com.fiap.abctechapi.model.Assistance;
 import br.com.fiap.abctechapi.service.AssistanceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -25,6 +26,7 @@ public class AssistanceApplicationImpl implements AssistanceApplication {
         return this.service.getAssistanceList().stream().map(this::mapAssistToDto).collect(Collectors.toList());
     }
 
+   @PostMapping
     private AssistDto mapAssistToDto(Assistance assist){
         return new AssistDto(assist.getId(), assist.getName(), assist.getDescription());
     }
