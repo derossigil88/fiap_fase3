@@ -5,18 +5,19 @@ create table assistance
     description varchar(300) not null,
     name        varchar(100) not null
 );
-INSERT INTO assistance (name,description) VALUES ('Manutenção 1', 'Descrição 1');
-INSERT INTO assistance (name,description) VALUES ('Manutenção 2', 'Descrição 2');
-INSERT INTO assistance (name,description) VALUES ('Manutenção 3', 'Descrição 3');
-INSERT INTO assistance (name,description) VALUES ('Manutenção 4', 'Descrição 4');
-INSERT INTO assistance (name,description) VALUES ('Manutenção 5', 'Descrição 5');
-INSERT INTO assistance (name,description) VALUES ('Manutenção 6', 'Descrição 6');
-INSERT INTO assistance (name,description) VALUES ('Manutenção 7', 'Descrição 7');
-INSERT INTO assistance (name,description) VALUES ('Manutenção 8', 'Descrição 9');
-INSERT INTO assistance (name,description) VALUES ('Manutenção 9', 'Descrição 9');
-INSERT INTO assistance (name,description) VALUES ('Manutenção 10', 'Descrição 10');
-INSERT INTO assistance (name,description) VALUES ('Manutenção 11', 'Descrição 11');
-INSERT INTO assistance (name,description) VALUES ('Manutenção 12', 'Descrição 12');
-INSERT INTO assistance (name,description) VALUES ('Manutenção 13', 'Descrição 13');
-INSERT INTO assistance (name,description) VALUES ('Manutenção 14', 'Descrição 14');
-INSERT INTO assistance (name,description) VALUES ('Manutenção 15', 'Descrição 15')
+INSERT INTO assistance (description, name) VALUES ('Troca de aparelho decodificador de sinal', 'Troca de aparelho');
+INSERT INTO assistance (description, name) VALUES ('Troca de cabo interno', 'Troca de cabo interno');
+INSERT INTO assistance (description, name) VALUES ('Substituição de fiação interna da resistência', 'Troca de fiação interna');
+INSERT INTO assistance (description, name) VALUES ('Reparo sem necessidade de compra de peças', 'Manutenção em fogão');
+INSERT INTO assistance (description, name) VALUES ('Reparo sem necessidade de compra de peças', 'Manutenção em geladeira');
+INSERT INTO assistance (description, name) VALUES ('Reparo sem necessidade de compra de peças', 'Manutenção em máquina de lavar');
+INSERT INTO assistance (description, name) VALUES ('Troca do painel digital da geladeira', 'Manutenção em geladeira');
+INSERT INTO assistance (description, name) VALUES ('Manutenção no motor da geladeira', 'Manutenção em geladeira');
+INSERT INTO assistance (description, name) VALUES ('Troca do motor da máquina de lavar', 'Manutenção em máquina de lavar');
+INSERT INTO assistance (description, name) VALUES ('Troca do cabo do gás', 'Manutenção em fogão');
+INSERT INTO assistance (description, name) VALUES ('Reparo na parte hidráulica da máquina de lavar', 'Manutenção em máquina de lavar');
+INSERT INTO assistance (description, name) VALUES ('Passagem de fiação elétrica nova', 'Fiação elétrica');
+INSERT INTO assistance (description, name) VALUES ('Passagem de fiação de internet e telefone nova', 'Fiação de internet e telefone');
+INSERT INTO assistance (description, name) VALUES ('Instalação de chuveiro elétrico', 'Instalação elétrica');
+INSERT INTO assistance (description, name) VALUES ('Instalação de antena digital', 'Instalação de antena');
+INSERT INTO assistance (description, name) VALUES ('Manutenção no cabo da internet', 'Manutenção internet');
