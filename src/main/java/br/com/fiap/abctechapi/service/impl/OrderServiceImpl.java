@@ -1,6 +1,7 @@
 package br.com.fiap.abctechapi.service.impl;
 
 import br.com.fiap.abctechapi.handler.exception.AssistNotFoundException;
+import br.com.fiap.abctechapi.handler.exception.FieldNotFoundException;
 import br.com.fiap.abctechapi.handler.exception.MaxAssistsException;
 import br.com.fiap.abctechapi.handler.exception.MinimumAssistRequiredException;
 import br.com.fiap.abctechapi.model.Assistance;
@@ -29,16 +30,16 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public void saveOrder(Order order, List<Long> arrayAssists) throws Exception {
         ArrayList<Assistance> assistances = new ArrayList<>();
-        arrayAssists.forEach( i -> {
-            Optional<Assistance> assistance = assistanceRepository.findById(i);
 
+         arrayAssists.forEach( i -> {
+            Optional<Assistance> assistance = assistanceRepository.findById(i);
 
             if(!assistance.isPresent()){
                 throw new AssistNotFoundException("Invalid Assist", "Assitencia listada não está cadastrada");
             }
             assistances.add(assistance.get());
-
         });
+
 
         order.setAssists(assistances);
 
@@ -47,8 +48,14 @@ public class OrderServiceImpl implements OrderService {
         }else if (order.exceedsMaxAssists()){
             throw new MaxAssistsException("Invalid Assists", "Número máximo de assistências é 15");
         }
-        orderRepository.save(order);
+
+        if(order.getOperatorId() == null
+        ){
+            throw new FieldNotFoundException("Invalid Field", "Campo operatorID vazio");
+        }
+                orderRepository.save(order);
     }
+
 
     @Override
     public List<Order> listOrderByOperator(Long operatorId) {
