@@ -1,5 +1,7 @@
 package br.com.fiap.abctechapi.handler;
 
+import br.com.fiap.abctechapi.handler.exception.AssistNotFoundException;
+import br.com.fiap.abctechapi.handler.exception.FieldNotFoundException;
 import br.com.fiap.abctechapi.handler.exception.MaxAssistsException;
 import br.com.fiap.abctechapi.handler.exception.MinimumAssistRequiredException;
 import org.springframework.http.HttpStatus;
@@ -20,6 +22,17 @@ public class ControllerExceptionHandler {
 
     @ExceptionHandler(MaxAssistsException.class)
     public ResponseEntity<ErrorMessageResponse> errorMaxAssistRequired(MaxAssistsException exception){
+        return getErrorMessageResponseResponseEntity(exception.getMessage(), exception.getDescription(), HttpStatus.BAD_REQUEST);
+    }
+    @ExceptionHandler(AssistNotFoundException.class)
+    public ResponseEntity<ErrorMessageResponse> errorAssistNotFoundException(AssistNotFoundException exception){
+        return getErrorMessageResponseResponseEntity(exception.getMessage(), exception.getDescription(), HttpStatus.BAD_REQUEST);
+    }
+
+
+
+    @ExceptionHandler(FieldNotFoundException.class)
+    public ResponseEntity<ErrorMessageResponse> errorFieldNotFoundException(FieldNotFoundException exception){
         return getErrorMessageResponseResponseEntity(exception.getMessage(), exception.getDescription(), HttpStatus.BAD_REQUEST);
     }
 

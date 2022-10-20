@@ -1,5 +1,6 @@
 package br.com.fiap.abctechapi.service.impl;
 
+import br.com.fiap.abctechapi.handler.exception.AssistNotFoundException;
 import br.com.fiap.abctechapi.handler.exception.MaxAssistsException;
 import br.com.fiap.abctechapi.handler.exception.MinimumAssistRequiredException;
 import br.com.fiap.abctechapi.model.Assistance;
@@ -30,8 +31,10 @@ public class OrderServiceImpl implements OrderService {
         ArrayList<Assistance> assistances = new ArrayList<>();
         arrayAssists.forEach( i -> {
             Optional<Assistance> assistance = assistanceRepository.findById(i);
+
+
             if(!assistance.isPresent()){
-//                throw new Not();
+                throw new AssistNotFoundException("Invalid Assist", "Assitencia listada não está cadastrada");
             }
             assistances.add(assistance.get());
 
